@@ -12,10 +12,14 @@
     <!-- META END -->
 
     <!-- LINK START -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/files/fonts/flaticon.css">
     <!-- LINK END -->
 
     <!-- SCRIPT START -->
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap/bootstrap.min.js"></script>
     <!-- SCRIPT END -->
 </head>
 <body>

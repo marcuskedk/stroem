@@ -7,7 +7,7 @@
     require './inc/components/Head.php';
     require './inc/components/Header.php';
 
-    echo pagination();
+    // echo pagination();
 
 ?>
 
