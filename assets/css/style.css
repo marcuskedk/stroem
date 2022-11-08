@@ -28,6 +28,90 @@ body, html {
     height: 100%;
 }
 
+/* EXTRA START */
+.bg-slider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: var(--onyx);
+    opacity: .7;
+    height: 100%;
+    width: 100%;
+}
+
 .bg-onyx {
     background-color: var(--onyx);
 }
+
+.stroem-preloader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: white;
+}
+
+.stroem-preloader .stroem-preloader-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: block;
+    width: 275px;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* EXTRA END */
+
+/* HEADER START */
+.stroem-header {
+    height: 100px;
+}
+
+.navbar-first .navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-first .nav-item span {
+    color: #fff;
+}
+
+.navbar-second .second-container.fixed-top {
+    position: fixed;
+    z-index: 500;
+    width: 100%;
+}
+
+.navbar-second .second-container {
+    position: absolute;
+    top: -8px;
+    z-index: 500;
+    width: 100%;
+    height: 50px;
+    padding: 0.5rem;
+}
+
+.navbar-second .navbar-nav .nav-item .nav-link {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--eerie-black);
+}
+/* HEADER END */
+
+/* BODY START */
+/* BODY END */
+
+/* FOOTER START */
+/* FOOTER END */
+
+/* MEDIA START */
+@media screen and (max-width: 922px) {
+    .navbar-first .navbar-nav {
+        flex-direction: column;
+    }
+    
+}
+/* MEDIA END */
