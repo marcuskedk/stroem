@@ -16,7 +16,7 @@
                     $list = $list . $item;
                 }
                 $response = $response . '
-                <h5 class="mb-0 fs-2">' . $title . '</h5>
+                <h1 class="mb-0 fs-2">' . $title . '</h1>
                 <ol class="breadcrumb mb-0">
                     ' . $list . '
                 </ol>
