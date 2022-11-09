@@ -30,8 +30,8 @@
 
 <section class="about-info">
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
+        <div class="row g-3">
+            <div class="col-12 text-center mb-5">
                 <h4>Lidt om <span class="text-stroem">STRØM</span></h4>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa, nisi cum delectus eos voluptatum modi obcaecati consectetur labore, repellendus adipisci dicta magni minima saepe illum, sit nesciunt itaque ex maxime!</p>
                 <div class="line-mark justify-content-center">
@@ -42,14 +42,17 @@
             </div>
             <div class="col-lg-6">
                 <h4>Lidt om <span class="text-stroem">STRØM</span></h4>
-                <div class="line-mark justify-content-center">
+                <div class="line-mark justify-content-start">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <div class="">
+                <div class="about-list">
                     <?=$getAboutResult['content'];?>
                 </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="<?=API_URL . '/images/about/1.jpg';?>" width="100%" class="rounded-2" alt="">
             </div>
         </div>
     </div>

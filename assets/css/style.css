@@ -106,7 +106,8 @@ body, html {
     top: 0;
     z-index: 500;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--cultured);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.04);
 }
 
 .navbar-second {
@@ -136,6 +137,16 @@ body, html {
     background-color: var(--cultured);
 }
 
+.stroem-breadcrumb .breadcrumb-item {
+    text-decoration: none;
+    color: var(--safety-orange-blaze-orange);
+}
+
+.stroem-breadcrumb .breadcrumb-item a {
+    text-decoration: none;
+    color: var(--sonic-silver);
+}
+
 .about-section {
     padding: 4rem 0 8rem 0;
 }
@@ -158,6 +169,26 @@ body, html {
 
 .news-section {
     padding: 5rem 0;
+}
+
+.about-info {
+    padding: 5rem 0;
+}
+
+.about-info .about-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-info .about-list ul li::before {
+    content: "";
+    height: 11px;
+    width: 11px;
+    border: 2px solid var(--independence);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: .5rem;
 }
 
 .slider-section .carousel-caption {
