@@ -65,6 +65,31 @@
                 </div>
                 <div class="d-flex flex-column">
                     <h5>Kommentarer (<?=count($getThisNewsResult['comments']);?>)</h5>
+                    <div class="p-4">
+                        <?php foreach ($getThisNewsResult['comments'] as $comments_key => $comments_item) { ?>
+                            <div class="comments">
+                                <p class="fw-semi-bold fs-5 mb-1"><?=$comments_item['name'];?></p>
+                                <p class="text-muted fw-semi-bold"><?=$comments_item['received'];?></p>
+                                <p class="text-secondary"><?=$comments_item['comment'];?></p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <h5>Skriv en kommentar</h5>
+                    <form metohd="POST" class="row">
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>
                 </div>
             </div>
             <?php } else { 
