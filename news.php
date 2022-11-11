@@ -92,18 +92,18 @@
                     <?php } ?>
                     <hr>
                     <h5>Skriv en kommentar</h5>
-                    <form metohd="POST" class="row g-3">
+                    <form method="POST" class="row g-3">
                         <div class="col-lg-6">
-                            <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Navn" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
+                            <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Navn" name="name" id="name-validate" value="<?=(isset($_POST['name'])) ? $_POST['name'] : '';?>" required>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Email" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
+                            <input type="email" class="form-control py-2 px-3 rounded-1" placeholder="Email" name="email" id="email-validate" value="<?=(isset($_POST['email'])) ? $_POST['email'] : '';?>" required>
                         </div>
                         <div class="col-12">
-                            <textarea class="form-control py-2 px-3 rounded-1" cols="30" rows="6" placeholder="Kommentar" name="comment" id="comment-validate" required><?=isset($_POST['comment']);?></textarea>
+                            <textarea class="form-control py-2 px-3 rounded-1" cols="30" rows="6" placeholder="Kommentar" name="comment" id="comment-validate" required><?=(isset($_POST['comment'])) ? $_POST['comment'] : '';?></textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-stroem text-uppercase py-2 px-4 rounded-1">Send besked</button>
+                            <button type="submit" class="btn btn-stroem text-uppercase py-2 px-4 rounded-1" name="send_comment">Send besked</button>
                         </div>
                     </form>
                 </div>
