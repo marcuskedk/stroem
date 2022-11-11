@@ -33,11 +33,9 @@
         <div class="carousel-inner">
             <?php foreach ($getSliderResult as $slider_key => $slider_item) { ?>
                 <div class="carousel-item<?=($slider_key == 0) ? ' active': '';?>" data-bs-interval="5000">
-                    <div class="bg-slider"></div>
-                    <img src="<?=API_URL . '/images/slider/' . $slider_item['image'];?>" class="d-block w-100" alt="...">
+                    <img src="<?=API_URL . '/images/slider/' . $slider_item['image'];?>" height="550px" style="object-fit: cover;" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-flex flex-column">
-                        <h2>First slide label</h2>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <?=$slider_item['caption'];?>
                         <a href="./contact" class="btn btn-stroem text-uppercase rounded-1 py-2 px-4">Kontakt os</a>
                     </div>
                 </div>
@@ -162,25 +160,28 @@
                     $month = "Okt";
                 }
                 if ($news_key < 3) { ?>
-                <div class="col-lg-4">
-                    <a href="./news?id=<?=$news_item['_id'];?>" class="card news-card border-0 text-decoration-none text-dark shadow-sm">
-                        <div class="position-relative">
-                            <img src="<?=API_URL . '/images/news/' . $news_item['image'];?>" width="100%" height="300px" class="card-img-top" alt="">
-                            <div class="bookmark">
-                                <span></span>
-                                <span></span>
-                                <span><?=$day;?></span>
-                                <span><?=$month;?></span>
+                    <div class="col-lg-4">
+                        <a href="./news?id=<?=$news_item['_id'];?>" class="card news-card border-0 text-decoration-none text-dark shadow-sm">
+                            <div class="position-relative">
+                                <img src="<?=API_URL . '/images/news/' . $news_item['image'];?>" width="100%" height="300px" class="card-img-top" alt="">
+                                <div class="bookmark">
+                                    <span></span>
+                                    <span></span>
+                                    <span><?=$day;?></span>
+                                    <span><?=$month;?></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><?=$news_item['title'];?></h5>
-                            <p class="card-text mb-0"><?=(strlen($news_item['content']) > 255) ? substr($news_item['content'], 0, 255) . '...': $news_item['content'];?></p>
-                        </div>
-                    </a>
-                </div>
-            <?php } 
-        } ?>
+                            <div class="card-body">
+                                <h5 class="card-title"><?=$news_item['title'];?></h5>
+                                <p class="card-text mb-0"><?=(strlen($news_item['content']) > 255) ? substr($news_item['content'], 0, 255) . '...': $news_item['content'];?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php } 
+            } ?>
+            <div class="col-12 text-center mt-5">
+                <a href="./news" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Flere nyheder...</a>
+            </div>
         </div>
     </div>
 </section>

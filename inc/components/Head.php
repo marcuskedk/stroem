@@ -25,6 +25,7 @@
 
     <!-- SCRIPT START -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/b26af8d2d5.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="./assets/js/bootstrap/bootstrap.min.js" defer></script>
     <script type="text/javascript" src="./assets/js/jquery-3.6.1.min.js" defer></script>

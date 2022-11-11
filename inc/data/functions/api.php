@@ -1,27 +1,26 @@
 <?php
 
-    function api($endpoints = 'GET', $type = NULL, $data = NULL) {
+    function api($endpoints = NULL, $type = 'GET', $data = NULL, $returnTransfer = NULL) {
+        ($returnTransfer == null) ? $returnTransfer = ($type == 'GET') ? true : false : $returnTransfer = $returnTransfer;
+        $ContentType = ($type == 'GET') ? 'application/x-www-form-urlencoded' : 'application/json';
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => "http://localhost:5333/" . $endpoints,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_RETURNTRANSFER => $returnTransfer,
             CURLOPT_CUSTOMREQUEST => $type,
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => [
-                'Content-Type: application/json'
+                'Content-Type: ' . $ContentType
             ],
         ]);
         $response = curl_exec($curl);
         $err = curl_error($curl);
         if ($err) {
-            $response = $err;
+            $response = "Fejl";
+        } else {
+            $response = json_decode($response, true);
         }
         curl_close($curl);
-        $response = json_decode($response, true);
         return $response;
     }
 

@@ -4,18 +4,18 @@
             <a class="navbar-brand" href="./"><img src="<?=API_URL . '/images/logo.png'?>" alt=""></a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <img src="<?=API_URL . '/images/icons/map-marker.png'?>" width="10px" alt=""> <span><?=$getContactInformationResult['address'] . ', ' . $getContactInformationResult['zipcity'];?>.</span>
+                    <i class="fas fa-map-marker-alt text-stroem"></i> <span><?=$getContactInformationResult['address'] . ', ' . $getContactInformationResult['zipcity'];?>.</span>
                 </li>
                 <li class="nav-item mx-lg-3 mx-0">
-                    <img src="<?=API_URL . '/images/icons/map-marker.png'?>" width="10px" alt=""> <span><?=$getContactInformationResult['openinghours'];?></span>
+                    <i class="far fa-clock text-stroem"></i> <span><?=$getContactInformationResult['openinghours'];?></span>
                 </li>
                 <li class="nav-item">
-                    <img src="<?=API_URL . '/images/icons/map-marker.png'?>" width="10px" alt=""> <span><?=$getContactInformationResult['phone'];?></span>
+                    <i class="fas fa-phone-alt text-stroem"></i> <span><?=$getContactInformationResult['phone'];?></span>
                 </li>
             </ul>
         </div>
     </div>
-    <nav class="navbar navbar-second navbar-expand-lg py-0">
+    <nav class="navbar navbar-second navbar-expand-lg navbar-dark py-0">
         <div class="container">
             <div class="second-container rounded-1 d-flex justify-content-between w-100">
                 <div class="d-flex d-lg-none flex-row justify-content-between w-100">
@@ -23,8 +23,8 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg">
-                        <button class="btn btn-outline-success" type="submit">S</button>
+                        <input class="form-control" type="search" placeholder="Søg" aria-label="Søg">
+                        <!-- <button class="btn btn-outline-success" type="submit">S</button> -->
                     </form>
                 </div>
                 <div class="collapse navbar-collapse" id="collapseNavbar">
@@ -50,8 +50,8 @@
                     </ul>
                 </div>
                 <form class="d-none d-lg-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Søg" aria-label="Søg">
-                    <button class="btn btn-outline-success" type="submit">S</button>
+                    <input class="form-control" type="search" placeholder="Søg" aria-label="Søg">
+                    <!-- <button class="btn btn-outline-success" type="submit">S</button> -->
                 </form>
             </div>
         </div>

@@ -29,6 +29,25 @@ $(function() {
         }
     }
 
+    $("#accountEditForm").submit(function( event ) {
+        $.ajax({
+            url: 'http://localhost:5333/user/admin/' + sessionStorage.getItem('userId'),
+            type: 'PUT',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                name: $(this).find('[name="name"]').val(),
+                email: $(this).find('[name="email"]').val(),
+            },
+            success: function(data) {
+                window.location = './admin?page=account';
+            },
+            error: function(err) {
+                $('.error-message').html('<div class="alert alert-danger mb-0 rounded-1 py-2 px-3">' + err.responseJSON.message + '</div>');
+            }
+        });
+        event.preventDefault();
+    });
+
     $("#loginForm").submit(function( event ) {
         $.ajax({
             url: 'http://localhost:5333/login/login',
@@ -39,12 +58,11 @@ $(function() {
                 password: $(this).find('[name="password"]').val(),
             },
             success: function(data) {
-                console.log(data)
                 sessionStorage.setItem('userId', data.users_id)
-                window.location = './admin?status=loggedin';
+                window.location = './admin?status=loggedin&w=' + data.users_id;
             },
             error: function(err) {
-                $('.error-message').html('<div class="alert alert-danger mb-0 rounded-1 py-2 px-3">' + err.responseJSON.message + '</div>');
+                $('.error-message').html('<div class="alert alert-danger mb-0 rounded-1 py-2 px-3">Forkert email eller adgangskode!</div>');
             }
         });
         event.preventDefault();
@@ -66,7 +84,7 @@ $(function() {
                 console.log(data)
             },
             error: function(err) {
-                $('.error-message').html('<div class="alert alert-danger mb-0 rounded-1 py-2 px-3">' + err.responseJSON.message + '</div>');
+                $('.error-message').html('<div class="alert alert-danger mb-0 rounded-1 py-2 px-3">Noget er gået galt, prøv igen!</div>');
             }
         });
         // $.ajax({
