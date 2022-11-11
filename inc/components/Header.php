@@ -17,7 +17,7 @@
     </div>
     <nav class="navbar navbar-second navbar-expand-lg py-0">
         <div class="container">
-            <div class="second-container rounded-2 d-flex justify-content-between w-100">
+            <div class="second-container rounded-1 d-flex justify-content-between w-100">
                 <div class="d-flex d-lg-none flex-row justify-content-between w-100">
                     <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Vis/skjul navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
                             <a href="./faq" class="nav-link">FAQ</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./news" class="nav-link">Nyheder</a>
+                            <a href="./news" class="nav-link" data-url="/news?id=<?=isset($_GET['id']) ? $_GET['id'] : '';?>">Nyheder</a>
                         </li>
                         <li class="nav-item">
                             <a href="./contact" class="nav-link">Kontakt os</a>

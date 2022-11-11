@@ -4,22 +4,22 @@
     
     require './inc/data/ControllerData.php'; // ControllerData - funktioner / dataer der bliver hentet, så der ikke skal skrives flere gange
 
-    $getContactInformationResult = api('contactinformation'); // Vi henter kontakt information dataer fra kontakt information i api'et
+    $getContactInformationResult = api('contactinformation', 'GET', ''); // Vi henter kontakt information dataer fra kontakt information i api'et
 
-    $getAboutResult = api('about'); // Vi henter om os dataer fra om os i api'et
+    $getAboutResult = api('about', 'GET', ''); // Vi henter om os dataer fra om os i api'et
 
-    $getServiceResult = api('service'); // Vi henter service dataer fra service i api'et
+    $getServiceResult = api('service', 'GET', ''); // Vi henter service dataer fra service i api'et
 
-    $getTestimonialResult = api('testimonial'); // Vi henter testimonial dataer fra testimonial i api'et
+    $getTestimonialResult = api('testimonial', 'GET', ''); // Vi henter testimonial dataer fra testimonial i api'et
 
-    $getTeamResult = api('team'); // Vi henter team dataer fra henter i api'et
+    $getTeamResult = api('team', 'GET', ''); // Vi henter team dataer fra henter i api'et
 
     require './inc/components/Head.php'; // Head components - links, meta, scripts
     require './inc/components/Header.php'; // Header components - Header med navbar
 
     if (isset($_GET['id'])) { 
-        $getThisNewsResult = api('news/' . $_GET['id']);
-        $getNewsResult = api('news'); // Vi henter nyheder dataer fra nyheder i api'et
+        $getThisNewsResult = api('news/' . $_GET['id'], 'GET', '');
+        $getNewsResult = api('news', 'GET', ''); // Vi henter nyheder dataer fra nyheder i api'et
         echo breadcrumbs(
             [
                 'Forside' => ['link' => './'],
@@ -28,13 +28,18 @@
             ]
         );
     } else {
-        $getNewsResult = api('news'); // Vi henter nyheder dataer fra nyheder i api'et
-        echo breadcrumbs(['Forside' => ['link' => './'], 'Nyheder' => ['link' => NULL]]);
+        $getNewsResult = api('news', 'GET', ''); // Vi henter nyheder dataer fra nyheder i api'et
+        echo breadcrumbs(
+            [
+                'Forside' => ['link' => './'],
+                'Nyheder' => ['link' => NULL]
+            ]
+        );
     }
 
 ?>
 
-<section class="news-info">
+<section class="news-page">
     <div class="container">
         <div class="row">
             <?php if (isset($_GET['id'])) { 
@@ -65,29 +70,36 @@
                 </div>
                 <div class="d-flex flex-column">
                     <h5>Kommentarer (<?=count($getThisNewsResult['comments']);?>)</h5>
-                    <div class="p-4">
-                        <?php foreach ($getThisNewsResult['comments'] as $comments_key => $comments_item) { ?>
+                    <?php foreach ($getThisNewsResult['comments'] as $comments_key => $comments_item) {
+                        $date = date_create(substr($comments_item['received'], 0, 10));
+                        $day = date_format($date,"d");
+                        $month = date_format($date,"M");
+                        $year = date_format($date,"Y");
+                        if ($month == "Oct") {
+                            $month = "Okt";
+                        } ?>
+                        <div class="p-4">
                             <div class="comments">
                                 <p class="fw-semi-bold fs-5 mb-1"><?=$comments_item['name'];?></p>
-                                <p class="text-muted fw-semi-bold"><?=$comments_item['received'];?></p>
+                                <p class="text-muted fw-semi-bold"><?=$day;?>. <?=$month;?>. <?=$year;?></p>
                                 <p class="text-secondary"><?=$comments_item['comment'];?></p>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                     <hr>
                     <h5>Skriv en kommentar</h5>
-                    <form metohd="POST" class="row">
+                    <form metohd="POST" class="row g-3">
                         <div class="col-lg-6">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Navn" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Email" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
                         </div>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control">
+                        <div class="col-12">
+                            <textarea class="form-control py-2 px-3 rounded-1" cols="30" rows="6" placeholder="Kommentar" name="comment" id="comment-validate" required><?=isset($_POST['comment']);?></textarea>
                         </div>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-stroem text-uppercase py-2 px-4 rounded-1">Send besked</button>
                         </div>
                     </form>
                 </div>
@@ -128,6 +140,7 @@
             <?php } ?>
             <div class="col-lg-4">
                 <aside class="list-group news-sidebar">
+                    <h4>Arkiv</h4>
                     <?php foreach ($getNewsResult as $news_key => $news_item) {
                         $date = date_create(substr($news_item['received'], 0, 10));
                         $day = date_format($date,"d");

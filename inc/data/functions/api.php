@@ -1,6 +1,7 @@
 <?php
 
-    function api($endpoints = NULL) {
+    function api($endpoints = NULL, $type = NULL, $data = NULL) {
+        ($type == NULL) ? $type = 'GET' : $type;
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => "http://localhost:5333/" . $endpoints,
@@ -9,7 +10,8 @@
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_CUSTOMREQUEST => $type,
+            CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json'
             ],

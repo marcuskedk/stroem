@@ -4,24 +4,35 @@
     
     require './inc/data/ControllerData.php'; // ControllerData - funktioner / dataer der bliver hentet, så der ikke skal skrives flere gange
 
-    $getContactInformationResult = api('contactinformation'); // Vi henter kontakt information dataer fra kontakt information i api'et
+    $getContactInformationResult = api('contactinformation', 'GET', ''); // Vi henter kontakt information dataer fra kontakt information i api'et
 
-    $getSliderResult = api('slider'); // Vi henter slider dataer fra slider i api'et
+    $getSliderResult = api('slider', 'GET', ''); // Vi henter slider dataer fra slider i api'et
 
-    $getAboutResult = api('about'); // Vi henter om os dataer fra om os i api'et
+    $getAboutResult = api('about', 'GET', ''); // Vi henter om os dataer fra om os i api'et
 
-    $getServiceResult = api('service'); // Vi henter service dataer fra service i api'et
+    $getServiceResult = api('service', 'GET', ''); // Vi henter service dataer fra service i api'et
 
-    $getTestimonialResult = api('testimonial'); // Vi henter testimonial dataer fra testimonial i api'et
+    $getTestimonialResult = api('testimonial', 'GET', ''); // Vi henter testimonial dataer fra testimonial i api'et
 
-    $getTeamResult = api('team'); // Vi henter team dataer fra henter i api'et
+    $getTeamResult = api('team', 'GET', ''); // Vi henter team dataer fra henter i api'et
     
-    $getNewsResult = api('news'); // Vi henter nyheder dataer fra nyheder i api'et
+    $getNewsResult = api('news', 'GET', ''); // Vi henter nyheder dataer fra nyheder i api'et
 
     // usort er en function og her har jeg valgt at sortere efter datoer. Da vi gerne ville have de nyeste oplæg
     usort($getNewsResult, function ($a, $b) {
         return substr($a['received'], 0, 10) > substr($b['received'], 0, 10) ? -1 : 1;
     });
+
+    // if (isset($_POST['book']) === true) {
+    //     api('login', 'POST', ['email' => $_POST['email'], 'password' => 'test']);
+    // }
+    
+    $json = array(
+        'email' => 'el@stroem.dk',
+        'password' => 'admin123',
+    );
+    $S = api('login', 'POST', $json);
+    echo json_encode($S);
 
     require './inc/components/Head.php'; // Head components - links, meta, scripts
     require './inc/components/Header.php'; // Header components - Header med navbar
@@ -38,7 +49,7 @@
                     <div class="carousel-caption d-none d-md-flex flex-column">
                         <h2>First slide label</h2>
                         <p>Some representative placeholder content for the first slide.</p>
-                        <a href="" class="btn btn-stroem text-uppercase rounded-1 py-2 px-4">Kontakt os</a>
+                        <a href="./contact" class="btn btn-stroem text-uppercase rounded-1 py-2 px-4">Kontakt os</a>
                     </div>
                 </div>
             <?php } ?>
@@ -60,7 +71,7 @@
             <div class="col-12 text-center">
                 <h4 class="fs-2"><?=$getAboutResult['title'];?></h4>
                 <p class="text-secondary"><?=$getAboutResult['teaser'];?></p>
-                <a href="#" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Læs mere</a>
+                <a href="./about" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Læs mere</a>
             </div>
         </div>
     </div>
@@ -72,7 +83,7 @@
             <div class="col-12 text-center text-white">
                 <h4 class="fs-2">Skal du bruge <span class="text-stroem">hjælp</span> fra <span class="text-stroem">Strøm?</span></h4>
                 <p>Lorem ipsum dolor sit amet consectetur</p>
-                <a href="#" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Kontakt os</a>
+                <a href="./contact" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Kontakt os</a>
             </div>
         </div>
     </div>
@@ -94,7 +105,7 @@
                         <div class="col-lg-6 d-flex">
                             <div class="me-3"><i class="<?=$service_item['icon'];?> text-stroem flaticon-services"></i></div>
                             <div>
-                                <a href="#" class="text-decoration-none text-dark fs-5 fw-semi-bold mb-2 d-block"><?=$service_item['title'];?></a>
+                                <a href="./service" class="text-decoration-none text-dark fs-5 fw-semi-bold mb-2 d-block"><?=$service_item['title'];?></a>
                                 <p class="text-secondary"><?=(strlen($service_item['teaser']) > 155 ) ? substr($service_item['teaser'], 0, 155) . '...': $service_item['teaser'];?></p>
                             </div>
                         </div>
@@ -110,22 +121,22 @@
 
 <section class="book-section py-3 bg-light">
     <div class="container">
-        <form class="row" method="POST">
+        <form class="row g-3" method="POST">
             <div class="col-lg-2">
                 <p class="fw-bold fs-5 mb-0 text-stroem" style="line-height: 1;">Book</p>
                 <p class="fw-bold fs-5 mb-0" style="line-height: 1;">service nu</p>
             </div>
             <div class="col-lg-2">
-                <input type="text" class="form-control" placeholder="Dit navn">
+                <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Dit navn" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
             </div>
             <div class="col-lg-2">
-                <input type="text" class="form-control" placeholder="Din Email">
+                <input type="email" class="form-control py-2 px-3 rounded-1" placeholder="Din Email" name="email" id="email-validate" value="<?=isset($_POST['email']);?>" required>
             </div>
             <div class="col-lg-2">
-                <input type="text" class="form-control" placeholder="Telefon nr.">
+                <input type="number" class="form-control py-2 px-3 rounded-1" placeholder="Telefon nr." name="phonenumber" id="phonenumber-validate" value="<?=isset($_POST['phonenumber']);?>" required>
             </div>
             <div class="col-lg-4">
-                <button type="submit" class="btn btn-stroem rounded-1 text-uppercase px-4">Send</button>
+                <button type="submit" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4" name="book">Send</button>
             </div>
         </form>
     </div>
@@ -162,7 +173,7 @@
                 }
                 if ($news_key < 3) { ?>
                 <div class="col-lg-4">
-                    <a href="#" class="card news-card border-0 text-decoration-none text-dark shadow-sm">
+                    <a href="./news?id=<?=$news_item['_id'];?>" class="card news-card border-0 text-decoration-none text-dark shadow-sm">
                         <div class="position-relative">
                             <img src="<?=API_URL . '/images/news/' . $news_item['image'];?>" width="100%" height="300px" class="card-img-top" alt="">
                             <div class="bookmark">
@@ -184,5 +195,4 @@
     </div>
 </section>
 
-*
 <?php require './inc/components/Footer.php'; ?>

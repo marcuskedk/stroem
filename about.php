@@ -4,17 +4,17 @@
     
     require './inc/data/ControllerData.php'; // ControllerData - funktioner / dataer der bliver hentet, så der ikke skal skrives flere gange
 
-    $getContactInformationResult = api('contactinformation'); // Vi henter kontakt information dataer fra kontakt information i api'et
+    $getContactInformationResult = api('contactinformation', 'GET', ''); // Vi henter kontakt information dataer fra kontakt information i api'et
 
-    $getAboutResult = api('about'); // Vi henter om os dataer fra om os i api'et
+    $getAboutResult = api('about', 'GET', ''); // Vi henter om os dataer fra om os i api'et
 
-    $getServiceResult = api('service'); // Vi henter service dataer fra service i api'et
+    $getServiceResult = api('service', 'GET', ''); // Vi henter service dataer fra service i api'et
 
-    $getTestimonialResult = api('testimonial'); // Vi henter testimonial dataer fra testimonial i api'et
+    $getTestimonialResult = api('testimonial', 'GET', ''); // Vi henter testimonial dataer fra testimonial i api'et
 
-    $getTeamResult = api('team'); // Vi henter team dataer fra henter i api'et
+    $getTeamResult = api('team', 'GET', ''); // Vi henter team dataer fra henter i api'et
     
-    $getNewsResult = api('news'); // Vi henter nyheder dataer fra nyheder i api'et
+    $getNewsResult = api('news', 'GET', ''); // Vi henter nyheder dataer fra nyheder i api'et
 
     // usort er en function og her har jeg valgt at sortere efter datoer. Da vi gerne ville have de nyeste oplæg
     usort($getNewsResult, function ($a, $b) {
@@ -28,7 +28,7 @@
 
 ?>
 
-<section class="about-info">
+<section class="about-page">
     <div class="container">
         <div class="row g-3">
             <div class="col-12 text-center mb-5">
