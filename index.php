@@ -23,17 +23,6 @@
         return substr($a['received'], 0, 10) > substr($b['received'], 0, 10) ? -1 : 1;
     });
 
-    // if (isset($_POST['book']) === true) {
-    //     api('login', 'POST', ['email' => $_POST['email'], 'password' => 'test']);
-    // }
-    
-    $json = array(
-        'email' => 'el@stroem.dk',
-        'password' => 'admin123',
-    );
-    $S = api('login', 'POST', $json);
-    echo json_encode($S);
-
     require './inc/components/Head.php'; // Head components - links, meta, scripts
     require './inc/components/Header.php'; // Header components - Header med navbar
 
@@ -106,7 +95,7 @@
                             <div class="me-3"><i class="<?=$service_item['icon'];?> text-stroem flaticon-services"></i></div>
                             <div>
                                 <a href="./service" class="text-decoration-none text-dark fs-5 fw-semi-bold mb-2 d-block"><?=$service_item['title'];?></a>
-                                <p class="text-secondary"><?=(strlen($service_item['teaser']) > 155 ) ? substr($service_item['teaser'], 0, 155) . '...': $service_item['teaser'];?></p>
+                                <p class="text-secondary"><?=(strlen($service_item['teaser']) > 155) ? substr($service_item['teaser'], 0, 155) . '...': $service_item['teaser'];?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -121,22 +110,23 @@
 
 <section class="book-section py-3 bg-light">
     <div class="container">
-        <form class="row g-3" method="POST">
+        <form class="row g-3" method="POST" id="bookForm">
+            <div class="error-message"></div>
             <div class="col-lg-2">
                 <p class="fw-bold fs-5 mb-0 text-stroem" style="line-height: 1;">Book</p>
                 <p class="fw-bold fs-5 mb-0" style="line-height: 1;">service nu</p>
             </div>
             <div class="col-lg-2">
-                <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Dit navn" name="name" id="name-validate" value="<?=isset($_POST['name']);?>" required>
+                <input type="text" class="form-control py-2 px-3 rounded-1" placeholder="Dit navn" name="name" id="name-validate" value="<?=isset($_POST['name']) ? $_POST['name']: '';?>" required>
             </div>
             <div class="col-lg-2">
-                <input type="email" class="form-control py-2 px-3 rounded-1" placeholder="Din Email" name="email" id="email-validate" value="<?=isset($_POST['email']);?>" required>
+                <input type="email" class="form-control py-2 px-3 rounded-1" placeholder="Din Email" name="email" id="email-validate" value="<?=isset($_POST['email']) ? $_POST['email']: '';?>" required>
             </div>
             <div class="col-lg-2">
-                <input type="number" class="form-control py-2 px-3 rounded-1" placeholder="Telefon nr." name="phonenumber" id="phonenumber-validate" value="<?=isset($_POST['phonenumber']);?>" required>
+                <input type="number" class="form-control py-2 px-3 rounded-1" placeholder="Telefon nr." name="phone" id="phone-validate" value="<?=isset($_POST['phone']) ? $_POST['phone']: '';?>" required>
             </div>
             <div class="col-lg-4">
-                <button type="submit" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4" name="book">Send</button>
+                <button type="submit" class="btn btn-stroem rounded-1 text-uppercase py-2 px-4">Send</button>
             </div>
         </form>
     </div>

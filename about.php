@@ -8,18 +8,9 @@
 
     $getAboutResult = api('about', 'GET', ''); // Vi henter om os dataer fra om os i api'et
 
-    $getServiceResult = api('service', 'GET', ''); // Vi henter service dataer fra service i api'et
-
     $getTestimonialResult = api('testimonial', 'GET', ''); // Vi henter testimonial dataer fra testimonial i api'et
 
     $getTeamResult = api('team', 'GET', ''); // Vi henter team dataer fra henter i api'et
-    
-    $getNewsResult = api('news', 'GET', ''); // Vi henter nyheder dataer fra nyheder i api'et
-
-    // usort er en function og her har jeg valgt at sortere efter datoer. Da vi gerne ville have de nyeste oplæg
-    usort($getNewsResult, function ($a, $b) {
-        return substr($a['received'], 0, 10) > substr($b['received'], 0, 10) ? -1 : 1;
-    });
 
     require './inc/components/Head.php'; // Head components - links, meta, scripts
     require './inc/components/Header.php'; // Header components - Header med navbar

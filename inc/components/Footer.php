@@ -2,7 +2,7 @@
     <div class="footer-content">
         <div class="footer-list bg-onyx border-bottom border-secondary py-5">
             <div class="container">
-                <div class="row">
+                <div class="row g-3">
                     <div class="col-lg-3">
                         <ul>
                             <li>

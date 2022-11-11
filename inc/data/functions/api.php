@@ -1,7 +1,6 @@
 <?php
 
-    function api($endpoints = NULL, $type = NULL, $data = NULL) {
-        ($type == NULL) ? $type = 'GET' : $type;
+    function api($endpoints = 'GET', $type = NULL, $data = NULL) {
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => "http://localhost:5333/" . $endpoints,

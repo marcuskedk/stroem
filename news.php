@@ -13,7 +13,7 @@
     $getTestimonialResult = api('testimonial', 'GET', ''); // Vi henter testimonial dataer fra testimonial i api'et
 
     $getTeamResult = api('team', 'GET', ''); // Vi henter team dataer fra henter i api'et
-
+    
     require './inc/components/Head.php'; // Head components - links, meta, scripts
     require './inc/components/Header.php'; // Header components - Header med navbar
 
@@ -36,6 +36,10 @@
             ]
         );
     }
+
+    usort($getNewsResult, function ($a, $b) {
+        return substr($a['received'], 0, 10) > substr($b['received'], 0, 10) ? -1 : 1;
+    });
 
 ?>
 
@@ -104,8 +108,7 @@
                     </form>
                 </div>
             </div>
-            <?php } else { 
-                $getNewsResult = api('news'); // Vi henter nyheder dataer fra nyheder i api'et ?>
+            <?php } else { ?>
                 <div class="col-lg-8">
                     <div class="row g-4">
                         <?php foreach ($getNewsResult as $news_key => $news_item) {

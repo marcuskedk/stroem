@@ -87,6 +87,20 @@ body, html {
     font-weight: 500;
 }
 
+.list-group-stroem {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, 0.525);
+    border-top-width: 1px !important;
+}
+
+.list-group-stroem.active,
+.list-group-stroem:hover {
+    color: #fff;
+    background-color: var(--safety-orange-blaze-orange);
+    border: 1px solid var(--safety-orange-blaze-orange);
+}
+
 .list-group-item-stroem.collapsed {
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.125);
@@ -172,6 +186,23 @@ body, html {
 /* HEADER END */
 
 /* BODY START */
+.admin-sidebar {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--onyx);
+    position: relative;
+}
+
+.admin-sidebar .list-group {
+    position: sticky;
+    top: 85px;
+}
+
+.admin-content {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
 .stroem-breadcrumb {
     padding: 5rem 0;
     background-color: var(--cultured);
